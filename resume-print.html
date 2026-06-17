@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tina Ohanian — Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.5;
+      color: #111;
+      background: #d8d5ce;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* sidebar col = 2.0in, left pad = 0.5in → gradient stops at 2.5in */
+    .page {
+      width: 8.5in;
+      height: 11in;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(to right, #f0ede7 2.5in, #fff 2.5in);
+    }
+
+    .page-inner {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      padding: 0.5in 0.58in 0.46in 0.5in;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 9pt;
+      border-bottom: 1.5pt solid #111;
+      margin-bottom: 14pt;
+      flex-shrink: 0;
+    }
+
+    .header-left h1 {
+      font-size: 26pt;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1;
+      margin-bottom: 4pt;
+    }
+
+    .header-left h1 em { font-style: italic; font-weight: 300; }
+
+    .header-left .title {
+      font-size: 8.5pt;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #777;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 8pt;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .header-right a { color: #555; text-decoration: none; }
+
+    /* ── Two-column body ── */
+    .body {
+      display: grid;
+      grid-template-columns: 2.0in 1fr;
+      gap: 0 26pt;
+      flex: 1;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar { padding-right: 6pt; }
+
+    .sidebar-section { margin-bottom: 11pt; }
+
+    .sidebar-label {
+      font-size: 6.5pt;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #333;
+      border-bottom: 0.75pt solid #ddd;
+      padding-bottom: 3pt;
+      margin-bottom: 6pt;
+    }
+
+    .sidebar p {
+      font-size: 8pt;
+      color: #444;
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    .skill-group { margin-bottom: 6pt; }
+    .skill-group:last-child { margin-bottom: 0; }
+
+    .skill-group-name {
+      font-size: 6.5pt;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 2pt;
+      text-decoration: underline;
+    }
+
+    .skill-list {
+      font-size: 7.5pt;
+      color: #444;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── Education ── */
+    .edu-item { margin-bottom: 7pt; }
+    .edu-item:last-child { margin-bottom: 0; }
+
+    .edu-degree {
+      font-size: 8pt;
+      font-weight: 500;
+      color: #111;
+      line-height: 1.35;
+      text-decoration: underline;
+    }
+
+    .edu-detail {
+      font-size: 7.5pt;
+      color: #666;
+      font-weight: 300;
+      line-height: 1.5;
+      margin-top: 1pt;
+    }
+
+    /* ── Main column ── */
+    .section { margin-bottom: 10pt; }
+    .section:last-child { margin-bottom: 0; }
+
+    .section-label {
+      font-size: 6.5pt;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+      border-bottom: 0.75pt solid #ddd;
+      padding-bottom: 3pt;
+      margin-bottom: 8pt;
+    }
+
+    .role { margin-bottom: 8pt; }
+    .role:last-child { margin-bottom: 0; }
+
+    .role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5pt;
+    }
+
+    .role-title {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .role-dates {
+      font-size: 7.5pt;
+      color: #999;
+      font-weight: 300;
+      white-space: nowrap;
+      margin-left: 8pt;
+    }
+
+    .role-company {
+      font-size: 8pt;
+      color: #666;
+      font-style: italic;
+      margin-bottom: 3pt;
+    }
+
+    .bullets { list-style: none; padding: 0; }
+
+    .bullets li {
+      font-size: 8.5pt;
+      font-weight: 300;
+      color: #333;
+      line-height: 1.48;
+      padding-left: 10pt;
+      position: relative;
+      margin-bottom: 1.5pt;
+    }
+
+    .bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: #bbb;
+    }
+
+    /* ── Print ── */
+    @page { size: letter; margin: 0; }
+
+    @media print {
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+<div class="page-inner">
+
+  <div class="header">
+    <div class="header-left">
+      <h1>Tina <em>Ohanian</em></h1>
+      <p class="title">Presentation Designer &nbsp;·&nbsp; Sports &amp; Entertainment</p>
+    </div>
+    <div class="header-right">
+      tinakohanian@gmail.com &nbsp;·&nbsp; (818) 355-2002<br>
+      Los Angeles, CA<br>
+      <a href="https://tinaohanianportfolio.netlify.app">tinaohanianportfolio.netlify.app</a>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- Sidebar: Summary + Skills (no Collaboration) + all 4 Education -->
+    <div class="sidebar">
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Summary</p>
+        <p>Presentation designer specializing in high-impact pitch decks and visual storytelling for sports, entertainment, and film. Known for creating partnership materials that helped secure over $20 million in deals — and for designing decks for Academy Award–winning projects alongside director Ryan Coogler.</p>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Skills</p>
+        <div class="skill-group">
+          <p class="skill-group-name">Design</p>
+          <p class="skill-list">Pitch Deck Design · Visual Storytelling · Layout &amp; Typography · Infographics · Data Visualization · Narrative Development · Brand Identity</p>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-name">Software</p>
+          <p class="skill-list">PowerPoint · Keynote · Adobe Photoshop · Adobe InDesign · Figma · Google Slides · Canva</p>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-name">Industry</p>
+          <p class="skill-list">Sports &amp; Entertainment · Global Partnerships · Brand Activation · Sponsorship Marketing · Media Kits · Press Materials</p>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Education</p>
+        <div class="edu-item">
+          <p class="edu-degree">MBA — In Progress</p>
+          <p class="edu-detail">Cal State Northridge · Est. May 2028</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">B.S. Business Admin, Marketing</p>
+          <p class="edu-detail">Cal State Northridge<br>Magna Cum Laude · Dean's List</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">B.S. Business Admin, Financial Analysis</p>
+          <p class="edu-detail">Cal State Northridge<br>Magna Cum Laude · Dean's List</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">A.A. General Studies</p>
+          <p class="edu-detail">Glendale Community College · 2019–2021<br>Senator of Activities, ASGCC · Dean's List</p>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Languages</p>
+        <p>English — Fluent<br>Armenian — Fluent</p>
+      </div>
+
+    </div>
+
+    <!-- Main: All experience + Volunteer -->
+    <div class="main">
+
+      <div class="section">
+        <p class="section-label">Experience</p>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Global Partnerships Designer</span>
+            <span class="role-dates">Dec 2024 – Present</span>
+          </div>
+          <p class="role-company">AEG Worldwide — LA Kings, LA Galaxy, Ontario Reign</p>
+          <ul class="bullets">
+            <li>Designed pitch decks and partnership presentations that contributed to securing over $20 million in sponsorship deals across AEG's sports and entertainment properties.</li>
+            <li>Transformed complex, multi-year sponsorship proposals into executive-ready visual narratives that accelerated client decision-making and deal closure.</li>
+            <li>Produced mockups of branded in-arena environments, LED activations, and integrated campaign concepts that brought partnership opportunities to life.</li>
+            <li>Partnered with senior sales executives to develop tailored presentation strategies — shaping story structure, messaging hierarchy, and visual tone for each prospect.</li>
+            <li>Managed multiple simultaneous high-priority deck projects under tight deadlines, consistently delivering at premium quality.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Business Services Associate</span>
+            <span class="role-dates">Jun 2024 – Dec 2024</span>
+          </div>
+          <p class="role-company">AEG Worldwide</p>
+          <ul class="bullets">
+            <li>Designed executive-level presentations for C-suite leadership reviews and external partner communications across AEG's global portfolio.</li>
+            <li>Established asset organization and version control systems that improved cross-team collaboration and reduced revision cycles.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Head Marketing Coordinator, Special Projects &amp; Sports</span>
+            <span class="role-dates">Jan 2024 – Dec 2024</span>
+          </div>
+          <p class="role-company">California State University, Northridge</p>
+          <ul class="bullets">
+            <li>Founded and launched CSUN's first-ever digital newsletter program — building strategy, design system, and distribution pipeline from the ground up.</li>
+            <li>Generated approximately $46,000 in revenue by pitching and closing sponsorships with local businesses to fund the program.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Pitch Deck Designer</span>
+            <span class="role-dates">Apr 2022 – Jun 2024</span>
+          </div>
+          <p class="role-company">Proximity Media — Ryan Coogler, Sev Ohanian, Zinzi Coogler</p>
+          <ul class="bullets">
+            <li>Designed pitch decks for <em>Sinners</em> (dir. Ryan Coogler) — which earned 16 Academy Award nominations and 4 wins at the 2025 Oscars.</li>
+            <li>Created high-impact pitch decks, lookbooks, and visual presentations for film and TV development projects across Proximity Media's slate.</li>
+            <li>Collaborated directly with Ryan Coogler to refine narrative structure, visual pacing, and storytelling across multiple presentations.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Freelance Thumbnail Strategist</span>
+            <span class="role-dates">2019 – Present</span>
+          </div>
+          <p class="role-company">Independent</p>
+          <ul class="bullets">
+            <li>Designed thumbnails and visual content for Unspeakable (one of YouTube's top 10 largest channels), <em>In Proximity</em> (Proximity Media podcast), and TEDx.</li>
+            <li>Developed scroll-stopping visual strategies for content across YouTube, Apple TV+, and Amazon Prime Video.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="section">
+        <p class="section-label">Volunteer &amp; Nonprofit</p>
+
+        <div class="role">
+          <div class="role-header">
+            <span class="role-title">Head of Partnerships</span>
+            <span class="role-dates">Present</span>
+          </div>
+          <p class="role-company">Friends of Team Armenia Basketball — 501(c)(3) Nonprofit</p>
+          <ul class="bullets">
+            <li>Hand-picked by Head Coach Rex Kalamian (Milwaukee Bucks assistant) to build and lead the organization's partnership and sponsorship program from scratch.</li>
+            <li>Secured $50,000 in sponsorships within the first month of outreach — establishing the program's foundation and demonstrating immediate impact.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+</body>
+</html>

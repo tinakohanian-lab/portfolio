@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Tina Ohanian — Presentation Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Reset ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── Tokens ─────────────────────────────────── */
+    :root {
+      --cream:    #F5F3EE;
+      --white:    #FFFFFF;
+      --ink:      #111111;
+      --ink-mid:  #555555;
+      --ink-lo:   #999999;
+      --border:   #E0DED8;
+      --max-w:    1220px;
+      --pad:      6vw;
+    }
+
+    /* ─── Base ───────────────────────────────────── */
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: 0.82;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320"><filter id="sp"><feTurbulence type="fractalNoise" baseFrequency="0.78" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0.26 0 0 0 0 0.20 0 0 0 0 0.11 12 0 0 0 -10"/></filter><rect width="320" height="320" filter="url(%23sp)"/></svg>');
+      background-size: 280px 280px;
+      background-repeat: repeat;
+    }
+
+    .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    /* ─── Nav ────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      background: rgba(245, 243, 238, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      height: 68px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -.01em;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink-mid);
+      transition: color .15s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ─── Hero ───────────────────────────────────── */
+    #hero {
+      padding-top: 68px;
+    }
+
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 96px var(--pad) 80px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(40px, 5.5vw, 70px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 24px;
+    }
+
+    .hero-text h1 em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 36px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 2px;
+      transition: opacity .15s;
+    }
+
+    .hero-cta:hover { opacity: .55; }
+
+    .hero-photo-wrap {
+      position: relative;
+    }
+
+    @keyframes blob-morph {
+      0%   { border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; }
+      25%  { border-radius: 40% 60% 58% 42% / 48% 62% 38% 52%; }
+      50%  { border-radius: 54% 46% 36% 64% / 36% 54% 46% 64%; }
+      75%  { border-radius: 44% 56% 64% 36% / 58% 36% 64% 42%; }
+      100% { border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; }
+    }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%;
+      animation: blob-morph 10s ease-in-out infinite;
+    }
+
+    .hero-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--ink-lo);
+      font-size: 13px;
+    }
+
+    /* ─── Divider ────────────────────────────────── */
+    .divider {
+      border: none;
+      height: 1px;
+      background: var(--border);
+      margin: 0;
+    }
+
+    /* ─── Brands Bar ─────────────────────────────── */
+    .brands-bar {
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .brands-track {
+      display: inline-flex;
+      align-items: center;
+      animation: scroll-brands 42s linear infinite;
+      padding: 22px 0;
+    }
+
+    @keyframes scroll-brands {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .brands-track:hover { animation-play-state: paused; }
+
+    .brand-item {
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-lo);
+      padding: 0 32px;
+      white-space: nowrap;
+      transition: color .2s;
+    }
+
+    .brand-item.soft {
+      font-style: italic;
+      font-weight: 300;
+      text-transform: none;
+      letter-spacing: .04em;
+      font-size: 14px;
+    }
+
+    .brand-item:hover { color: var(--ink); }
+
+    .brand-sep {
+      align-self: center;
+      color: #ccc9c2;
+      font-size: 7px;
+      line-height: 1;
+    }
+
+    /* ─── Section shared ─────────────────────────── */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 56px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+    }
+
+    .section-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .section-count {
+      font-size: 13px;
+      color: var(--ink-lo);
+    }
+
+    /* ─── Work Grid ──────────────────────────────── */
+    #work { background: var(--cream); }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 40px;
+    }
+
+    .work-card { cursor: pointer; }
+
+    .work-card-image-wrap {
+      overflow: hidden;
+      background: #e8e6e0;
+      margin-bottom: 20px;
+    }
+
+    .work-card-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: contain;
+      transition: transform .6s ease;
+    }
+
+    .work-card:hover .work-card-image { transform: scale(1.02); }
+
+    .work-card-image-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-lo);
+      font-size: 13px;
+      background: var(--border);
+    }
+
+    .work-card-pdf-link {
+      display: block;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .work-card-open-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10,10,10,0.45);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+
+    .work-card-pdf-link:hover .work-card-open-label { opacity: 1; }
+    .work-card-pdf-link:hover .work-card-image { transform: scale(1.04); }
+
+    .work-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .work-card-year {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-lo);
+    }
+
+    .work-card-tag {
+      font-size: 12px;
+      color: var(--ink-lo);
+    }
+
+    .work-card-title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.01em;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .work-card-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+
+    /* ─── Deals ──────────────────────────────────── */
+    #deals { background: var(--white); }
+
+    .deals-list { list-style: none; }
+
+    .deal-row {
+      display: grid;
+      grid-template-columns: 200px 140px 1fr;
+      gap: 24px;
+      align-items: start;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .deal-row:first-child { border-top: 1px solid var(--border); }
+
+    .deal-brand {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .deal-value {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink-mid);
+    }
+
+    .deal-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+
+    /* ─── Gallery ────────────────────────────────── */
+    #gallery { background: var(--cream); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .g-item {
+      position: relative;
+      overflow: hidden;
+      background: var(--border);
+      aspect-ratio: 4/3;
+    }
+
+    .g-item.span2 { grid-column: span 2; aspect-ratio: 8/3; }
+
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .55s ease;
+      display: block;
+    }
+
+    .g-item:hover img { transform: scale(1.04); }
+
+    .g-item-ph {
+      aspect-ratio: 4/3;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-lo);
+      font-size: 12px;
+    }
+
+    .g-item.span2 .g-item-ph { aspect-ratio: 8/3; }
+    .g-item.span3 { grid-column: span 3; aspect-ratio: 4/1; }
+    .g-item.span3 .g-item-ph { aspect-ratio: 4/1; }
+
+    .mock-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(17,17,17,0.72);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 9px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .gallery-intro {
+      font-size: 0.875rem;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      max-width: 600px;
+      margin: 0 0 40px;
+    }
+
+    .g-item img { cursor: zoom-in; }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      object-fit: contain;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      cursor: default;
+      animation: lb-in .22s ease;
+    }
+
+    @keyframes lb-in {
+      from { opacity: 0; transform: scale(0.96); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    #lb-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      opacity: 0.7;
+      background: none;
+      border: none;
+      padding: 4px 8px;
+    }
+
+    #lb-close:hover { opacity: 1; }
+
+    /* ─── About ──────────────────────────────────── */
+    #about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 44% 56% 58% 42% / 52% 40% 60% 48%;
+    }
+
+    .about-photo-ph {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-lo);
+      font-size: 13px;
+    }
+
+    .about-content { padding-top: 8px; }
+
+    .about-block { margin-bottom: 48px; }
+
+    .about-block:last-child { margin-bottom: 0; }
+
+    .about-block-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-lo);
+      margin-bottom: 16px;
+    }
+
+    .about-block p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.8;
+    }
+
+    /* ─── Education ──────────────────────────────── */
+    #education { background: var(--cream); }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .edu-intro {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      position: sticky;
+      top: 90px;
+    }
+
+    .edu-items { list-style: none; }
+
+    .edu-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .edu-item:first-child { border-top: 1px solid var(--border); }
+
+    .edu-degree {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .edu-school {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-lo);
+      margin-bottom: 6px;
+    }
+
+    .edu-detail {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+
+    /* ─── Contact ────────────────────────────────── */
+    #contact { background: var(--white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 400;
+      letter-spacing: -.02em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .contact-left h2 em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .contact-left p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.75;
+    }
+
+    .contact-right { padding-top: 8px; }
+
+    .contact-item {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:first-child { border-top: 1px solid var(--border); }
+
+    .contact-item-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-lo);
+      margin-bottom: 6px;
+    }
+
+    .contact-item a,
+    .contact-item span {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--ink);
+      transition: color .15s;
+    }
+
+    .contact-item a:hover { color: var(--ink-lo); }
+
+    /* ─── Resume ─────────────────────────────────── */
+    #resume { background: var(--cream); }
+
+    .resume-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .resume-sidebar {
+      position: sticky;
+      top: 90px;
+    }
+
+    .resume-summary {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .resume-skills-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-lo);
+      margin-bottom: 20px;
+    }
+
+    .skill-group {
+      margin-bottom: 22px;
+    }
+
+    .skill-group-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-lo);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-tag {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 4px 11px;
+      border-radius: 100px;
+      transition: background .2s, border-color .2s;
+    }
+
+    .skill-tag:hover {
+      background: var(--ink);
+      color: var(--white);
+      border-color: var(--ink);
+    }
+
+    .skill-tag.featured {
+      background: var(--ink);
+      color: var(--white);
+      border-color: var(--ink);
+      font-weight: 500;
+    }
+
+    .skill-tag.featured:hover {
+      background: #333;
+      border-color: #333;
+    }
+
+    .resume-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 2px;
+      margin-top: 32px;
+      transition: opacity .15s;
+    }
+
+    .resume-download:hover { opacity: .5; }
+
+    .resume-main { }
+
+    .resume-group { margin-bottom: 56px; }
+
+    .resume-group:last-child { margin-bottom: 0; }
+
+    .resume-group-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-lo);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .resume-role {
+      padding-bottom: 32px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .resume-role:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .resume-role-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .resume-role-meta {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-lo);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+
+    .resume-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .resume-bullets li {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .resume-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    /* ─── Footer ─────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 24px var(--pad);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-text {
+      font-size: 13px;
+      color: var(--ink-lo);
+    }
+
+    /* ─── Hamburger ─────────────────────────────── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 101;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform .2s, opacity .2s;
+    }
+
+    nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+    nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ─── Responsive 900px ───────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 80px var(--pad) 60px; }
+      .hero-photo-wrap { order: -1; max-width: 280px; }
+      .work-grid { grid-template-columns: 1fr; gap: 40px; }
+      .deal-row { grid-template-columns: 1fr; gap: 6px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .g-item.span2 { grid-column: span 1; aspect-ratio: 4/3; }
+      .about-grid { grid-template-columns: 1fr; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .edu-intro { position: static; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .resume-layout { grid-template-columns: 1fr; }
+      .resume-sidebar { position: static; }
+      .footer-inner { flex-direction: column; gap: 6px; text-align: center; }
+    }
+
+    /* ─── Responsive 640px (phones) ─────────────── */
+    @media (max-width: 640px) {
+      :root { --pad: 5vw; }
+
+      body { font-size: 15px; }
+
+      /* Nav — hamburger */
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: rgba(245, 243, 238, 0.98);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 0 16px;
+        z-index: 99;
+      }
+
+      nav.nav-open .nav-links { display: flex; }
+
+      .nav-links li a {
+        display: block;
+        padding: 12px var(--pad);
+        font-size: 15px;
+        color: var(--ink);
+      }
+
+      /* Sections */
+      .section { padding: 60px 0; }
+      .section-header { margin-bottom: 32px; }
+
+      /* Hero */
+      .hero-inner { padding: 60px var(--pad) 48px; gap: 24px; }
+      .hero-photo-wrap { max-width: 180px; margin: 0 auto; }
+      .hero-desc { font-size: 16px; }
+
+      /* Work */
+      .work-grid { gap: 32px; }
+      .work-card-title { font-size: 17px; }
+
+      /* Gallery — single column */
+      .gallery-grid { grid-template-columns: 1fr; gap: 6px; }
+      .g-item.span2, .g-item.span3 { grid-column: span 1; aspect-ratio: 4/3; }
+
+      /* Deals */
+      .deal-row { padding: 18px 0; }
+      .deal-brand { font-size: 13px; }
+
+      /* About */
+      .about-photo { max-width: 220px; margin: 0 auto; display: block; }
+
+      /* Education */
+      .edu-intro { margin-bottom: 32px; }
+
+      /* Resume */
+      .skill-tag { font-size: 11px; padding: 3px 9px; }
+
+      /* Contact */
+      .contact-left h2 { font-size: clamp(24px, 7vw, 36px); }
+      .contact-item a, .contact-item span { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ─────────────────────────────────────────── -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Tina Ohanian</a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="document.getElementById('main-nav').classList.toggle('nav-open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#work" onclick="document.getElementById('main-nav').classList.remove('nav-open')">Work</a></li>
+      <li><a href="#deals" onclick="document.getElementById('main-nav').classList.remove('nav-open')">Deals</a></li>
+      <li><a href="#gallery" onclick="document.getElementById('main-nav').classList.remove('nav-open')">Gallery</a></li>
+      <li><a href="#about" onclick="document.getElementById('main-nav').classList.remove('nav-open')">About</a></li>
+      <li><a href="#resume" onclick="document.getElementById('main-nav').classList.remove('nav-open')">Resume</a></li>
+      <li><a href="#contact" onclick="document.getElementById('main-nav').classList.remove('nav-open')">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>Hi, I'm<br><em>Tina Ohanian.</em></h1>
+      <p class="hero-desc">I'm a presentation designer focused on pitch decks, visual storytelling, and branded sales materials within sports and entertainment. I help organizations translate ideas and concepts into polished, executive-ready presentations.</p>
+      <a href="#work" class="hero-cta">View my work &rarr;</a>
+    </div>
+    <div class="hero-photo-wrap">
+      <!--
+        Add your headshot as  images/tina.jpg
+        and it will appear here automatically.
+      -->
+      <img
+        src="images/tina.jpg"
+        alt="Tina Ohanian"
+        class="hero-photo"
+        onerror="this.outerHTML='<div class=\'hero-photo-placeholder\'>Add images/tina.jpg</div>'"
+      >
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Brands ───────────────────────────────────────── -->
+<div class="brands-bar" aria-label="Partner brands">
+  <div class="brands-track">
+    <span class="brand-item">The Oscars&reg;</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">Della</span><span class="brand-sep">✦</span>
+    <span class="brand-item">Crunchyroll</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">LA Kings</span><span class="brand-sep">✦</span>
+    <span class="brand-item">Netflix</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">Universal Studios</span><span class="brand-sep">✦</span>
+    <span class="brand-item">Twilio</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">Anheuser-Busch</span><span class="brand-sep">✦</span>
+    <span class="brand-item">The Grammys</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">The Emmys</span><span class="brand-sep">✦</span>
+    <span class="brand-item">Cava</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">Crypto.com Arena</span><span class="brand-sep">✦</span>
+    <span class="brand-item">LA Galaxy</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">Vet Tix</span><span class="brand-sep">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span class="brand-item">The Oscars&reg;</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">Della</span><span class="brand-sep">✦</span>
+    <span class="brand-item">Crunchyroll</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">LA Kings</span><span class="brand-sep">✦</span>
+    <span class="brand-item">Netflix</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">Universal Studios</span><span class="brand-sep">✦</span>
+    <span class="brand-item">Twilio</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">Anheuser-Busch</span><span class="brand-sep">✦</span>
+    <span class="brand-item">The Grammys</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">The Emmys</span><span class="brand-sep">✦</span>
+    <span class="brand-item">Cava</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">Crypto.com Arena</span><span class="brand-sep">✦</span>
+    <span class="brand-item">LA Galaxy</span><span class="brand-sep">✦</span>
+    <span class="brand-item soft">Vet Tix</span><span class="brand-sep">✦</span>
+  </div>
+</div>
+
+<!-- ── Work ─────────────────────────────────────────── -->
+<section id="work" class="section">
+  <div class="inner">
+    <div class="section-header">
+      <h2 class="section-title">Selected <em>work</em></h2>
+      <span class="section-count">06 projects</span>
+    </div>
+
+    <div class="work-grid">
+
+      <div class="work-card">
+        <a href="https://drive.google.com/file/d/10XRnAjfE7xTG7FadaOaj-Mm0O85md2rJ/view?usp=sharing" target="_blank" class="work-card-image-wrap work-card-pdf-link" title="Open deck">
+          <img src="images/deck-apple.png" alt="Apple Founding Partnership Opportunity" class="work-card-image">
+          <span class="work-card-open-label">View Deck &nearr;</span>
+        </a>
+        <div class="work-card-meta">
+          <span class="work-card-year">2025</span>
+          <span class="work-card-tag">Founding Partnership Deck</span>
+        </div>
+        <h3 class="work-card-title">Apple Founding Partnership</h3>
+        <p class="work-card-desc">Designed a high-stakes founding partnership deck presenting Apple with a premier sponsorship opportunity across AEG properties — building the case for long-term brand integration through arena visibility, digital touchpoints, and exclusive fan experiences.</p>
+      </div>
+
+      <div class="work-card">
+        <a href="https://drive.google.com/file/d/1nAZ7l306PiMCSEmTIRD1yVRCOwbTLEGj/view?usp=sharing" target="_blank" class="work-card-image-wrap work-card-pdf-link" title="Open deck">
+          <img src="images/deck-allergan.png" alt="AEG x Allergan Aesthetics" class="work-card-image">
+          <span class="work-card-open-label">View Deck &nearr;</span>
+        </a>
+        <div class="work-card-meta">
+          <span class="work-card-year">2025</span>
+          <span class="work-card-tag">Partnership Pitch Deck</span>
+        </div>
+        <h3 class="work-card-title">AEG &times; Allergan Aesthetics</h3>
+        <p class="work-card-desc">Developed a branded partnership pitch deck positioning Allergan Aesthetics across AEG venues and live events, highlighting audience alignment, premium placement opportunities, and integrated experiential activation concepts.</p>
+      </div>
+
+      <div class="work-card">
+        <a href="https://www.ap.org/news-highlights/spotlights/2026/sinners-makes-history-setting-oscars-nomination-record/" target="_blank" class="work-card-image-wrap work-card-pdf-link" title="Read more">
+          <img src="images/sinners new.jpeg" alt="Sinners Concept Pitch Deck" class="work-card-image">
+          <span class="work-card-open-label">Read More &nearr;</span>
+        </a>
+        <div class="work-card-meta">
+          <span class="work-card-year">2022</span>
+          <span class="work-card-tag">Concept Pitch Deck</span>
+        </div>
+        <h3 class="work-card-title">&ldquo;Sinners&rdquo; &mdash; Concept Pitch Deck</h3>
+        <p class="work-card-desc">Created a visual pitch deck outlining the film&rsquo;s tone, world, and character direction, providing a concise overview of the project&rsquo;s aesthetic and Michael B. Jordan&rsquo;s proposed role.</p>
+      </div>
+
+      <div class="work-card">
+        <a href="https://drive.google.com/file/d/1h6g0PQMnzr7yJIKFRTLma_zGVO-jTvGz/view?usp=sharing" target="_blank" class="work-card-image-wrap work-card-pdf-link" title="Open deck">
+          <img src="images/deck-eg-data.png" alt="AEG Data Activation" class="work-card-image">
+          <span class="work-card-open-label">View Deck &nearr;</span>
+        </a>
+        <div class="work-card-meta">
+          <span class="work-card-year">2025</span>
+          <span class="work-card-tag">Data Activation Deck</span>
+        </div>
+        <h3 class="work-card-title">AEG Data Activation</h3>
+        <p class="work-card-desc">Created a targeted deck presenting AEG&rsquo;s data activation platform to prospective partners, visualizing how first-party fan data translates into measurable brand outcomes across live events and digital channels.</p>
+      </div>
+
+      <div class="work-card">
+        <a href="https://drive.google.com/file/d/1vFRy6xg7p0aDOVHoLuSm-OUPTcezIA1a/view?usp=sharing" target="_blank" class="work-card-image-wrap work-card-pdf-link" title="Open deck">
+          <img src="images/deck-aeg-data.png" alt="AEG Data Collaboration Sales Deck" class="work-card-image">
+          <span class="work-card-open-label">View Deck &nearr;</span>
+        </a>
+        <div class="work-card-meta">
+          <span class="work-card-year">2025</span>
+          <span class="work-card-tag">Sales Deck</span>
+        </div>
+        <h3 class="work-card-title">AEG Data Collaboration</h3>
+        <p class="work-card-desc">Designed a data-forward sales deck communicating AEG&rsquo;s first-party audience insights and sponsorship intelligence capabilities to prospective brand partners, translating complex analytics into a compelling visual narrative.</p>
+      </div>
+
+      <div class="work-card">
+        <a href="Files/Universal%20Studios%20x%20AEG.pdf" class="work-card-image-wrap work-card-pdf-link" title="Open deck">
+          <img src="images/Universal Deck.png" alt="AEG x Universal Studios" class="work-card-image">
+          <span class="work-card-open-label">View Deck &nearr;</span>
+        </a>
+        <div class="work-card-meta">
+          <span class="work-card-year">2026</span>
+          <span class="work-card-tag">Partnership Pitch Deck</span>
+        </div>
+        <h3 class="work-card-title">AEG &times; Universal Studios</h3>
+        <p class="work-card-desc">Developed a visual partnership pitch deck exploring co-branded fan experiences, themed game activations, and integrated venue branding. Combined creative concepting, custom mockups, and strategic storytelling to show how entertainment IP could translate into immersive live-event environments.</p>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Deals ─────────────────────────────────────────── -->
+<section id="deals" class="section">
+  <div class="inner">
+    <div class="section-header">
+      <h2 class="section-title">Deals <em>supported</em></h2>
+      <span class="section-count">09 partnerships</span>
+    </div>
+
+    <ul class="deals-list">
+      <li class="deal-row">
+        <span class="deal-brand">The Academy &times; AEG</span>
+        <span class="deal-value">The Oscars&reg; 2029</span>
+        <span class="deal-desc">Assisted with creative materials for both the pitch and press releases supporting the landmark multi-year partnership between the Academy of Motion Picture Arts and Sciences and AEG — making L.A. Live the new home of the Oscars&reg; starting with the 101st ceremony in 2029 through 2039.</span>
+      </li>
+      <li class="deal-row">
+        <span class="deal-brand">The Grammys &times; AEG</span>
+        <span class="deal-value">Live Event &amp; Media</span>
+        <span class="deal-desc">Developed branded presentation materials and visual concepts supporting partnership conversations tied to live event exposure and media placements.</span>
+      </li>
+      <li class="deal-row">
+        <span class="deal-brand">The Emmys &times; AEG</span>
+        <span class="deal-value">Televised Integrations</span>
+        <span class="deal-desc">Designed pitch decks and visual storytelling assets for sponsorship proposals aligned with televised event integrations and digital visibility opportunities.</span>
+      </li>
+      <li class="deal-row">
+        <span class="deal-brand">Anheuser-Busch &times; AEG</span>
+        <span class="deal-value">$4M</span>
+        <span class="deal-desc">Deck creation and partnership visuals contributed to a $4M arena sponsorship, highlighting premium signage, hospitality integrations, and game-day activations.</span>
+      </li>
+      <li class="deal-row">
+        <span class="deal-brand">Netflix &times; LA Kings</span>
+        <span class="deal-value">$3.5M</span>
+        <span class="deal-desc">Designed pitch materials supporting a $3.5M partnership, featuring promotional integrations for Stranger Things and Squid Game across digital and in-arena platforms.</span>
+      </li>
+      <li class="deal-row">
+        <span class="deal-brand">Twilio &times; LA Kings</span>
+        <span class="deal-value">$1.5M</span>
+        <span class="deal-desc">Deck development contributed to a $1.5M partnership, resulting in Twilio branding placement on LA Kings away helmets and in-arena visibility assets.</span>
+      </li>
+      <li class="deal-row">
+        <span class="deal-brand">Della &times; LA Galaxy</span>
+        <span class="deal-value">$750K</span>
+        <span class="deal-desc">Created all creative materials end-to-end — pitch deck, follow-up creatives, and press release — supporting the multi-year partnership making Della an Official Partner of the LA Galaxy, featuring matchday fan activations, on-site engagement stations, digital integrations, and co-branded fan merchandise.</span>
+      </li>
+      <li class="deal-row">
+        <span class="deal-brand">Vet Tix &times; LA Kings &amp; Ontario Reign</span>
+        <span class="deal-value">Multi-Year Partnership</span>
+        <span class="deal-desc">Created all creative materials for the pitch and have personally executed in-arena creative activations across 50+ LA Kings home games. The mission-driven multiyear partnership makes Vet Tix an official partner of the LA Kings (NHL) and Ontario Reign (AHL), expanding access to professional hockey for thousands of veterans, active service members, first responders, and their families across Southern California.</span>
+      </li>
+      <li class="deal-row">
+        <span class="deal-brand">Iron Bow &times; AEG</span>
+        <span class="deal-value">Corporate Sponsorship</span>
+        <span class="deal-desc">Created partnership presentation materials and branded mockups supporting corporate sponsorship discussions and venue-level branding concepts.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Gallery ───────────────────────────────────────── -->
+<section id="gallery" class="section">
+  <div class="inner">
+    <div class="section-header">
+      <h2 class="section-title">Mocks &amp; <em>activations</em></h2>
+      <span class="section-count">21 mockups</span>
+    </div>
+
+    <p class="gallery-intro">These aren't installation photos — they're precision-built visual mockups I designed to show partners exactly how their brand would look in-venue before anything goes to print or production. Scoreboards, ribbon boards, LED signage, fan touchpoints. Every environment is built from scratch and the branding can be swapped for any partner we're pitching.</p>
+
+    <div class="gallery-grid">
+      <!-- Row 1: 1+1+1 -->
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/2024-25 LAK Lower Halo.jpeg" alt="LA Kings Lower Halo mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/C.CA - Ribbon A Takeover.jpeg" alt="Crypto.com Arena Ribbon A Takeover mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/DHSP North Scoreboard Feature.jpeg" alt="DHSP North Scoreboard Feature mockup">
+      </div>
+      <!-- Row 2: 2+1 -->
+      <div class="g-item span2">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/LA Kings Center In-Ice.jpeg" alt="LA Kings Center In-Ice mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/Kinecta Soccer Center Static Dasher.jpeg" alt="Kinecta Soccer Center Static Dasher mockup">
+      </div>
+      <!-- Row 3: 1+1+1 -->
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/L.A. LIVE - Peacock Place-05.jpeg" alt="L.A. LIVE Peacock Place mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/L.A. LIVE CHC Brand Activation 1.jpeg" alt="L.A. LIVE CHC Brand Activation mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/L.A. LIVE CHC Brand Activation 2.jpeg" alt="L.A. LIVE CHC Brand Activation 2 mockup">
+      </div>
+      <!-- Row 4: 1+2 -->
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/L.A. LIVE Chick Hearn Court Pillars.jpeg" alt="L.A. LIVE Chick Hearn Court Pillars mockup">
+      </div>
+      <div class="g-item span2">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/LA Galaxy LED Stadium Ribbon Boards 2024.jpeg" alt="LA Galaxy LED Stadium Ribbon Boards mockup">
+      </div>
+      <!-- Row 5: 1+1+1 -->
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/LA Kings LED Ribbon Board.jpeg" alt="LA Kings LED Ribbon Board mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/LAL CHC PT Pillar.jpeg" alt="LAL Chick Hearn Court PT Pillar mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/LAL Hotel LED Screens.jpeg" alt="LAL Hotel LED Screens mockup">
+      </div>
+      <!-- Row 6: 1+1+1 -->
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/LAL Retail Store.jpeg" alt="LAL Retail Store mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/Peacock Place - Fan Sports Activation.jpeg" alt="Peacock Place Fan Sports Activation mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/Peacock Place - Mamba Invitational LEDs.jpeg" alt="Peacock Place Mamba Invitational LEDs mockup">
+      </div>
+      <!-- Row 7: 2+1 -->
+      <div class="g-item span2">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/Peacock Place Plaza Activation.jpeg" alt="Peacock Place Plaza Activation mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/Premium Levels Escalator Sign.jpeg" alt="Premium Levels Escalator Sign mockup">
+      </div>
+      <!-- Row 8: 1+1+1 -->
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/Premium Levels Southwest VIP Entrance.jpeg" alt="Premium Levels Southwest VIP Entrance mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/Regal Static Signage.jpeg" alt="Regal Static Signage mockup">
+      </div>
+      <div class="g-item">
+        <span class="mock-badge">Mockup</span>
+        <img src="images/Uber Arena OOH LEDs.jpeg" alt="Uber Arena OOH LEDs mockup">
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── About ─────────────────────────────────────────── -->
+<section id="about" class="section">
+  <div class="inner">
+    <div class="section-header">
+      <h2 class="section-title">About <em>me</em></h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <img
+          src="images/tina.jpg"
+          alt="Tina Ohanian"
+          class="about-photo"
+          onerror="this.outerHTML='<div class=\'about-photo-ph\'>images/tina.jpg</div>'"
+        >
+      </div>
+      <div class="about-content">
+        <div class="about-block">
+          <p class="about-block-label">Bio</p>
+          <p>Tina Ohanian is a presentation designer focused on pitch decks, visual storytelling, and branded sales materials within sports and entertainment. Her work centers on creating polished, executive-ready presentations that translate ideas, scripts, and concepts into clear visual narratives. With a background in marketing and partnerships, she brings both strategic thinking and strong layout sensibility to every project.</p>
+        </div>
+        <div class="about-block">
+          <p class="about-block-label">My approach</p>
+          <p>My approach to design begins with understanding the story behind each project &mdash; its tone, audience, and creative intent. I focus on building clean visual systems, strong typography, and cohesive layouts that support narrative rather than distract from it. Collaboration and iteration are central to my process, and I value feedback as a tool to refine and elevate the final presentation. Whether preparing a pitch deck or sales presentation, my goal is to create materials that feel polished, purposeful, and visually aligned with the project&rsquo;s identity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Education ─────────────────────────────────────── -->
+<section id="education" class="section">
+  <div class="inner">
+    <div class="section-header">
+      <h2 class="section-title"><em>Education</em></h2>
+      <span class="section-count">05 credentials</span>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-intro">
+        <p>Academic background combining financial analysis and digital marketing — bringing both creative and analytical perspectives to every project. Studies emphasized brand strategy, consumer behavior, and visual communication.</p>
+        <div style="margin-top: 40px;">
+          <p class="about-block-label" style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-lo);margin-bottom:16px;">Awards &amp; Honors</p>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink);border-bottom:1px solid var(--border);padding-bottom:14px;">
+              <img class="lb-trigger" src="images/award-deans-list.png" alt="Dean's List Award" style="width:48px;height:48px;object-fit:cover;border-radius:4px;flex-shrink:0;cursor:zoom-in;">
+              <span>Dean&rsquo;s List Award — click to view</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink);">
+              <img class="lb-trigger" src="images/award-senator.png" alt="GCC Senator of Activities Award" style="width:48px;height:48px;object-fit:cover;border-radius:4px;flex-shrink:0;cursor:zoom-in;">
+              <span>GCC Senator of Activities — click to view</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="edu-items">
+        <li class="edu-item">
+          <p class="edu-degree">Associate of Arts &mdash; General Studies</p>
+          <p class="edu-school">Glendale Community College &nbsp;&middot;&nbsp; 2019 &ndash; 2021</p>
+          <p class="edu-detail">Senator of Activities &mdash; ASGCC Associated Students of Glendale Community College</p>
+        </li>
+        <li class="edu-item">
+          <p class="edu-degree">Bachelor of Science &mdash; Business Administration, Marketing</p>
+          <p class="edu-school">California State University, Northridge</p>
+          <p class="edu-detail">Focus: Digital Marketing, Brand Strategy, Visual Communications &nbsp;&middot;&nbsp; Dean&rsquo;s List &nbsp;&middot;&nbsp; Magna Cum Laude</p>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:10px;">
+            <img class="lb-trigger" src="images/degree-marketing.png" alt="B.S. Marketing Degree" style="width:40px;height:40px;object-fit:cover;border-radius:3px;border:1px solid var(--border);cursor:zoom-in;flex-shrink:0;">
+            <span style="font-size:12px;color:var(--ink-lo);">Click to view degree</span>
+          </div>
+        </li>
+        <li class="edu-item">
+          <p class="edu-degree">Bachelor of Science &mdash; Business Administration, Financial Analysis</p>
+          <p class="edu-school">California State University, Northridge</p>
+          <p class="edu-detail">Focus: Data Analysis, Forecasting, Business Strategy &nbsp;&middot;&nbsp; Dean&rsquo;s List &nbsp;&middot;&nbsp; Magna Cum Laude</p>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:10px;">
+            <img class="lb-trigger" src="images/degree-financial.png" alt="B.S. Financial Analysis Degree" style="width:40px;height:40px;object-fit:cover;border-radius:3px;border:1px solid var(--border);cursor:zoom-in;flex-shrink:0;">
+            <span style="font-size:12px;color:var(--ink-lo);">Click to view degree</span>
+          </div>
+        </li>
+        <li class="edu-item">
+          <p class="edu-degree">Master of Business Administration (MBA) &mdash; In Progress</p>
+          <p class="edu-school">California State University, Northridge</p>
+          <p class="edu-detail">Expected Completion: May 2028 &nbsp;&middot;&nbsp; Emphasis: Strategic Management &amp; Design</p>
+        </li>
+        <li class="edu-item">
+          <p class="edu-degree">Adobe Photoshop for Design &amp; Visual Media</p>
+          <p class="edu-school">California State University, Northridge</p>
+          <p class="edu-detail">Photo compositing, color correction, layer masking, typography integration, and preparing digital assets for print and presentation use.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── Resume ─────────────────────────────────────────── -->
+<hr class="divider">
+<section id="resume" class="section">
+  <div class="inner">
+    <div class="section-header">
+      <h2 class="section-title"><em>Resume</em></h2>
+      <a href="Files/Tina_Ohanian_Resume.pdf" download class="resume-download">Download PDF &darr;</a>
+    </div>
+
+    <div class="resume-layout">
+
+      <!-- Sidebar: summary + skills -->
+      <div class="resume-sidebar">
+        <p class="resume-summary">Digital designer specializing in high-impact pitch decks and visual storytelling. Known for designing decks for award-winning film and entertainment projects &mdash; including work with director Ryan Coogler &mdash; and for creating partnership materials that have helped secure over $20 million in deals.</p>
+
+        <p class="resume-skills-label">Skills</p>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Design</p>
+          <div class="skills-tags">
+            <span class="skill-tag featured">Pitch Deck Design</span>
+            <span class="skill-tag featured">Visual Storytelling</span>
+            <span class="skill-tag">Layout &amp; Typography</span>
+            <span class="skill-tag">Infographics</span>
+            <span class="skill-tag">Data Visualization</span>
+            <span class="skill-tag">Narrative Development</span>
+            <span class="skill-tag">Brand Identity</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Software</p>
+          <div class="skills-tags">
+            <span class="skill-tag featured">PowerPoint</span>
+            <span class="skill-tag featured">Keynote</span>
+            <span class="skill-tag">Adobe Photoshop</span>
+            <span class="skill-tag">Adobe InDesign</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Google Slides</span>
+            <span class="skill-tag">Canva</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Industry</p>
+          <div class="skills-tags">
+            <span class="skill-tag featured">Sports &amp; Entertainment</span>
+            <span class="skill-tag">Partner Pitches</span>
+            <span class="skill-tag">Brand Activation</span>
+            <span class="skill-tag">Sponsorship Marketing</span>
+            <span class="skill-tag">Press Materials</span>
+            <span class="skill-tag">Media Kits</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Collaboration</p>
+          <div class="skills-tags">
+            <span class="skill-tag">Stakeholder Collaboration</span>
+            <span class="skill-tag">Presentation Strategy</span>
+            <span class="skill-tag">Cross-functional Teamwork</span>
+            <span class="skill-tag">Fast Turnaround</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main: experience -->
+      <div class="resume-main">
+
+        <div class="resume-group">
+          <p class="resume-group-label">Work Experience</p>
+
+          <div class="resume-role">
+            <p class="resume-role-title">Global Partnerships Designer</p>
+            <p class="resume-role-meta">AEG Worldwide &mdash; LA Kings, LA Galaxy, Ontario Reign &nbsp;&middot;&nbsp; December 2024 &ndash; Present</p>
+            <ul class="resume-bullets">
+              <li>Designed high-impact pitch decks and sales presentations supporting major partnership opportunities across sports and entertainment brands.</li>
+              <li>Contributed to partnership materials that helped secure over $20 million in sponsorship deals across AEG properties.</li>
+              <li>Translated complex sponsorship strategies and term sheets into clear, persuasive visual narratives that drove client engagement and deal progression.</li>
+              <li>Collaborated with sales executives and stakeholders to refine deck structure, messaging flow, and storytelling for maximum clarity and impact.</li>
+              <li>Created compelling visual storytelling through mockups, branded environments, and integrated campaign concepts.</li>
+              <li>Delivered fast-turnaround revisions under tight deadlines, managing multiple projects while maintaining high-quality output.</li>
+            </ul>
+          </div>
+
+          <div class="resume-role">
+            <p class="resume-role-title">Business Services Associate</p>
+            <p class="resume-role-meta">AEG Worldwide &nbsp;&middot;&nbsp; June 2024 &ndash; December 2024</p>
+            <ul class="resume-bullets">
+              <li>Designed and formatted executive presentations and internal decks for leadership and partner communications.</li>
+              <li>Supported branded material development and ensured visual consistency across projects.</li>
+              <li>Managed asset organization, version control, and cross-functional coordination.</li>
+            </ul>
+          </div>
+
+          <div class="resume-role">
+            <p class="resume-role-title">Head Marketing Coordinator, Special Projects &amp; Sports</p>
+            <p class="resume-role-meta">California State University, Northridge &nbsp;&middot;&nbsp; January 2024 &ndash; December 2024</p>
+            <ul class="resume-bullets">
+              <li>Built and launched the university&rsquo;s first digital newsletter program, leading end-to-end creative and campaign strategy.</li>
+              <li>Designed pitch decks, campaign visuals, and email layouts to support audience growth and engagement initiatives.</li>
+              <li>Conducted A/B testing on messaging and creative to optimize performance and improve conversion outcomes.</li>
+              <li>Monetized the program through partnerships with local businesses, generating approximately $46,000 in revenue.</li>
+            </ul>
+          </div>
+
+          <div class="resume-role">
+            <p class="resume-role-title">Pitch Deck Designer</p>
+            <p class="resume-role-meta">Proximity Media &mdash; Ryan Coogler, Sev Ohanian, Zinzi Coogler &nbsp;&middot;&nbsp; April 2022 &ndash; June 2024</p>
+            <ul class="resume-bullets">
+              <li>Designed the pitch decks for <em>Sinners</em> (dir. Ryan Coogler), which went on to receive 16 Academy Award nominations and 4 wins.</li>
+              <li>Designed high-impact pitch decks, lookbooks, and visual presentations for film and television development projects in collaboration with director Ryan Coogler and the Proximity Media team.</li>
+              <li>Translated scripts, creative concepts, and brand narratives into compelling visual storytelling experiences.</li>
+              <li>Collaborated directly with executive leadership &mdash; including Ryan Coogler &mdash; to shape narrative flow, pacing, and emotional tone of presentations.</li>
+              <li>Developed layout systems, typography direction, and visual styles aligned with story themes and audience positioning.</li>
+            </ul>
+          </div>
+
+          <div class="resume-role">
+            <p class="resume-role-title">Freelance Thumbnail Strategist</p>
+            <p class="resume-role-meta">Independent &nbsp;&middot;&nbsp; 2019 &ndash; Present</p>
+            <ul class="resume-bullets">
+              <li>Designed thumbnails and developed visual concepts for YouTube channels, podcasts, and streaming content distributed across YouTube, Apple TV, and Amazon.</li>
+              <li>Clients include Unspeakable (one of YouTube&rsquo;s largest channels), <em>In Proximity</em> (the Proximity Media podcast), and TEDx.</li>
+              <li>Concepted and wrote thumbnail ideas end-to-end &mdash; translating episode content and tone into scroll-stopping visual strategies optimized for each platform.</li>
+              <li>Delivered consistent, on-brand designs aligned with each creator&rsquo;s identity and audience, iterating quickly based on performance and creative direction.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="resume-group">
+          <p class="resume-group-label">Education</p>
+
+          <div class="resume-role">
+            <p class="resume-role-title">California State University, Northridge</p>
+            <p class="resume-role-meta">2× B.S. Business Administration (Marketing &amp; Financial Analysis) &nbsp;&middot;&nbsp; MBA In Progress (May 2028)</p>
+            <ul class="resume-bullets">
+              <li style="display:flex;align-items:center;gap:10px;">
+                <img class="lb-trigger" src="images/degree-marketing.png" alt="B.S. Marketing Degree" style="width:36px;height:36px;object-fit:cover;border-radius:3px;border:1px solid var(--border);cursor:zoom-in;flex-shrink:0;">
+                B.S. Business Administration &mdash; Marketing
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;">
+                <img class="lb-trigger" src="images/degree-financial.png" alt="B.S. Financial Analysis Degree" style="width:36px;height:36px;object-fit:cover;border-radius:3px;border:1px solid var(--border);cursor:zoom-in;flex-shrink:0;">
+                B.S. Business Administration &mdash; Financial Analysis
+              </li>
+            </ul>
+          </div>
+
+          <div class="resume-role">
+            <p class="resume-role-title">Glendale Community College</p>
+            <p class="resume-role-meta">Associate of Arts &nbsp;&middot;&nbsp; 2019 &ndash; 2021</p>
+            <ul class="resume-bullets">
+              <li>Senator of Activities</li>
+              <li style="display:flex;align-items:center;gap:10px;">
+                <img class="lb-trigger" src="images/award-deans-list.png" alt="Dean's List Award" style="width:36px;height:36px;object-fit:cover;border-radius:3px;border:1px solid var(--border);cursor:zoom-in;flex-shrink:0;">
+                Dean&rsquo;s List Award
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;">
+                <img class="lb-trigger" src="images/award-senator.png" alt="Senator of Activities Award" style="width:36px;height:36px;object-fit:cover;border-radius:3px;border:1px solid var(--border);cursor:zoom-in;flex-shrink:0;">
+                Senator of Activities Award
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="resume-group">
+          <p class="resume-group-label">Volunteer &amp; Nonprofit</p>
+
+          <div class="resume-role">
+            <p class="resume-role-title">Head of Partnerships</p>
+            <p class="resume-role-meta">Friends of Team Armenia Basketball &mdash; 501(c)(3) Nonprofit &nbsp;&middot;&nbsp; Present</p>
+            <ul class="resume-bullets">
+              <li>Recruited by Head Coach Rex Kalamian (Milwaukee Bucks assistant coach) to lead partnership and sponsorship development for the organization.</li>
+              <li>Secured $50,000 in sponsorships within the first month of outreach, building relationships with brands and businesses aligned with the Armenian community.</li>
+              <li>Designed and developed a sponsorship deck website to support outreach efforts and communicate partnership opportunities to prospective sponsors.</li>
+              <li>Led targeted outreach campaigns to Armenian-owned businesses and law firms in the Los Angeles area.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Contact ───────────────────────────────────────── -->
+<section id="contact" class="section">
+  <div class="inner">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2>Thank <em>you.</em></h2>
+        <p>Please feel free to contact me here &mdash; I&rsquo;d love to connect.</p>
+      </div>
+      <div class="contact-right">
+        <div class="contact-item">
+          <p class="contact-item-label">Name</p>
+          <span>Tina Ohanian</span>
+        </div>
+        <div class="contact-item">
+          <p class="contact-item-label">Email</p>
+          <a href="mailto:tinakohanian@gmail.com">tinakohanian@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <p class="contact-item-label">Phone</p>
+          <a href="tel:+18183552002">(818) 355-2002</a>
+        </div>
+        <div class="contact-item">
+          <p class="contact-item-label">Location</p>
+          <span>Los Angeles, CA</span>
+        </div>
+        <div class="contact-item">
+          <p class="contact-item-label">LinkedIn</p>
+          <a href="https://www.linkedin.com/in/tinaohanian01" target="_blank">linkedin.com/in/tinaohanian01</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-text">Freelance presentation designer in Los Angeles, CA.</span>
+    <span class="footer-text">&copy; 2026 Tina Ohanian. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- ── Lightbox ─────────────────────────────────────── -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button id="lb-close" aria-label="Close">&times;</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lb-img');
+  const lbClose  = document.getElementById('lb-close');
+
+  document.querySelectorAll('.g-item img, .lb-trigger').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  lightbox.addEventListener('click', e => { if (e.target !== lbImg) closeLightbox(); });
+  lbClose.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
