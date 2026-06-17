@@ -1,0 +1,25 @@
+---
+import deals from '../data/deals.json';
+const count = String(deals.length).padStart(2, '0');
+---
+
+<section id="deals" class="section">
+  <div class="inner">
+    <div class="section-header">
+      <h2 class="section-title">Deals <em>supported</em></h2>
+      <span class="section-count">{count} partnerships</span>
+    </div>
+
+    <ul class="deals-list">
+      {
+        deals.map((deal) => (
+          <li class="deal-row">
+            <span class="deal-brand">{deal.brand}</span>
+            <span class="deal-value">{deal.value}</span>
+            <span class="deal-desc">{deal.desc}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

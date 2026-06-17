@@ -1,0 +1,89 @@
+---
+// The contact form uses Netlify Forms — no backend code required.
+// Netlify detects the form at deploy time from the built HTML. To get the
+// messages emailed to you, open your Netlify site → Forms → "contact" →
+// Settings & notifications → add an email notification to tinakohanian@gmail.com.
+const contactDetails = [
+  { label: 'Email', value: 'tinakohanian@gmail.com', href: 'mailto:tinakohanian@gmail.com' },
+  { label: 'Phone', value: '(818) 355-2002', href: 'tel:+18183552002' },
+  { label: 'Location', value: 'Los Angeles, CA' },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/tinaohanian01',
+    href: 'https://www.linkedin.com/in/tinaohanian01',
+    external: true,
+  },
+];
+---
+
+<section id="contact" class="section">
+  <div class="inner">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2>Let's <em>connect.</em></h2>
+        <p>
+          Have a deck, pitch, or project in mind? Send me a note and I'll get back
+          to you — or reach out directly through any of the channels below.
+        </p>
+
+        <div style="margin-top: 32px;">
+          {
+            contactDetails.map((item) => (
+              <div class="contact-item">
+                <p class="contact-item-label">{item.label}</p>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    {...(item.external ? { target: '_blank', rel: 'noopener' } : {})}
+                  >
+                    {item.value}
+                  </a>
+                ) : (
+                  <span>{item.value}</span>
+                )}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="contact-form"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="form-hp">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-field">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" />
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Send message →</button>
+          <p class="form-note">I usually reply within a day or two.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

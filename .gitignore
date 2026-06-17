@@ -2,3 +2,9 @@
 *.DS_Store
 Thumbs.db
 New Mocks and Decks/
+
+# Astro / Node
+node_modules/
+dist/
+.astro/
+*.log

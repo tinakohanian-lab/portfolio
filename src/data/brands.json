@@ -1,0 +1,16 @@
+[
+  { "name": "The Oscars®", "soft": false },
+  { "name": "Della", "soft": true },
+  { "name": "Crunchyroll", "soft": false },
+  { "name": "LA Kings", "soft": true },
+  { "name": "Netflix", "soft": false },
+  { "name": "Universal Studios", "soft": true },
+  { "name": "Twilio", "soft": false },
+  { "name": "Anheuser-Busch", "soft": true },
+  { "name": "The Grammys", "soft": false },
+  { "name": "The Emmys", "soft": true },
+  { "name": "Cava", "soft": false },
+  { "name": "Crypto.com Arena", "soft": true },
+  { "name": "LA Galaxy", "soft": false },
+  { "name": "Vet Tix", "soft": true }
+]

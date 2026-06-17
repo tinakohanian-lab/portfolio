@@ -1,0 +1,18 @@
+---
+import brands from '../data/brands.json';
+// Duplicate the list so the marquee can loop seamlessly.
+const track = [...brands, ...brands];
+---
+
+<div class="brands-bar" aria-label="Partner brands">
+  <div class="brands-track">
+    {
+      track.map((brand) => (
+        <>
+          <span class={`brand-item${brand.soft ? ' soft' : ''}`}>{brand.name}</span>
+          <span class="brand-sep">✦</span>
+        </>
+      ))
+    }
+  </div>
+</div>

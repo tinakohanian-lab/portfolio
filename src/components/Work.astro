@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('work')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const count = String(projects.length).padStart(2, '0');
+---
+
+<section id="work" class="section">
+  <div class="inner">
+    <div class="section-header">
+      <h2 class="section-title">Selected <em>work</em></h2>
+      <span class="section-count">{count} projects</span>
+    </div>
+
+    <div class="work-grid">
+      {
+        projects.map((project) => (
+          <div class="work-card">
+            <a
+              href={project.data.href}
+              target="_blank"
+              class="work-card-image-wrap work-card-pdf-link"
+              title="Open deck"
+            >
+              <img
+                src={project.data.image}
+                alt={project.data.title}
+                class="work-card-image"
+              />
+              <span class="work-card-open-label">{project.data.label}</span>
+            </a>
+            <div class="work-card-meta">
+              <span class="work-card-year">{project.data.year}</span>
+              <span class="work-card-tag">{project.data.tag}</span>
+            </div>
+            <h3 class="work-card-title">{project.data.title}</h3>
+            <p class="work-card-desc">{project.data.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

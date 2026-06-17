@@ -11,10 +11,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: '.'
+          publish-dir: 'dist'
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ github.event.head_commit.message }}

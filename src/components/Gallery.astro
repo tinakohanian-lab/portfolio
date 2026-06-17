@@ -1,0 +1,32 @@
+---
+import gallery from '../data/gallery.json';
+const count = String(gallery.length).padStart(2, '0');
+---
+
+<section id="gallery" class="section">
+  <div class="inner">
+    <div class="section-header">
+      <h2 class="section-title">Mocks &amp; <em>activations</em></h2>
+      <span class="section-count">{count} mockups</span>
+    </div>
+
+    <p class="gallery-intro">
+      These aren't installation photos — they're precision-built visual mockups I
+      designed to show partners exactly how their brand would look in-venue before
+      anything goes to print or production. Scoreboards, ribbon boards, LED
+      signage, fan touchpoints. Every environment is built from scratch and the
+      branding can be swapped for any partner we're pitching.
+    </p>
+
+    <div class="gallery-grid">
+      {
+        gallery.map((item) => (
+          <div class={`g-item${item.span === 2 ? ' span2' : ''}`}>
+            <span class="mock-badge">Mockup</span>
+            <img src={item.src} alt={item.alt} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

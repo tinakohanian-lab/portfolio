@@ -1,0 +1,36 @@
+---
+---
+
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button id="lb-close" aria-label="Close">×</button>
+  <img id="lb-img" src="" alt="" />
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox')!;
+  const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+  const lbClose = document.getElementById('lb-close')!;
+
+  document.querySelectorAll<HTMLImageElement>('.g-item img, .lb-trigger').forEach((img) => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target !== lbImg) closeLightbox();
+  });
+  lbClose.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
